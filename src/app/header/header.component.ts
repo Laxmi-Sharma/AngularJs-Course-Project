@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import * as AuthActions from '../auth/store/auth.actions';
+import * as RecipeActions from '../recipes/store/recipe.actions';
 
 @Component({
     selector: 'aap-header',
@@ -38,11 +39,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     onDataSave() {
-        this.dataStorageService.storeRecipies();
+        // this.dataStorageService.storeRecipies();
+        this.store.dispatch(new RecipeActions.StoreRecipies());
     }
 
     onFetchData() {
-        this.dataStorageService.fetchRecipies().subscribe();
+        //this.dataStorageService.fetchRecipies().subscribe();
+        this.store.dispatch(new RecipeActions.FetchRecipies());
     }
 
     onLogout() {
